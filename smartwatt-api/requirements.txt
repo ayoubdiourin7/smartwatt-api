@@ -1,3 +1,5 @@
 fastapi
 pytest
 redis
+google-cloud-bigquery
+google-cloud-pubsub
