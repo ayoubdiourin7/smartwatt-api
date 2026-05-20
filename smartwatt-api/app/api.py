@@ -29,6 +29,7 @@ def init_app(storage, publisher, worker=None) -> FastAPI:
     def handle_message(message: DevMessage):
         # The API keeps only supported codes and pushes them into Pub/Sub.
         # Deduplication happens in the batch worker right before the BigQuery load.
+        #test
         rows_to_enqueue = [
             {
                 "devId": message.bizData.devId,
