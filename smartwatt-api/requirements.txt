@@ -1,4 +1,5 @@
 fastapi
+httpx
 pytest
 redis
 google-cloud-bigquery
