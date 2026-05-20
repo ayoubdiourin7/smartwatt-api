@@ -410,7 +410,7 @@ PYTHONPATH=.venv/lib/python3.11/site-packages python3 -m pytest -q
 
 ## CI/CD
 
-The repository includes a basic GitHub Actions pipeline in `.github/workflows/ci-cd.yml`.
+The repository includes a basic GitHub Actions pipeline at the repository root in `../.github/workflows/ci-cd.yml`.
 
 - `test` runs on every push, pull request, and manual workflow run
 - it sets up Python 3.11, installs `requirements.txt`, and runs `pytest -q`

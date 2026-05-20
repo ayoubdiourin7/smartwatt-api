@@ -5,6 +5,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: smartwatt-api
+
 jobs:
   test:
     name: Run tests
@@ -19,6 +23,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: smartwatt-api/requirements.txt
 
       - name: Install dependencies
         run: |
@@ -41,11 +46,11 @@ jobs:
       - name: Build tarball artifact
         run: |
           mkdir -p dist
-          git archive --format=tar.gz --output "dist/smartwatt-api-${GITHUB_SHA}.tar.gz" HEAD
+          git archive --format=tar.gz --output "dist/smartwatt-api-${GITHUB_SHA}.tar.gz" HEAD:smartwatt-api
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: smartwatt-api-${{ github.sha }}
-          path: dist/smartwatt-api-${{ github.sha }}.tar.gz
+          path: smartwatt-api/dist/smartwatt-api-${{ github.sha }}.tar.gz
           retention-days: 14
