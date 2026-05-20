@@ -9,7 +9,7 @@ class Propertie(BaseModel):
 
 
 class BizData(BaseModel) :
-    devId : str = Field(min_length=1)
+    devId : str = Field(min_length=0)
     dataId :  str 
     productId: str = Field(min_length=1)
     properties: list[Propertie]

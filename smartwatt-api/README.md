@@ -408,6 +408,17 @@ In this workspace the packaged dependencies were executed with:
 PYTHONPATH=.venv/lib/python3.11/site-packages python3 -m pytest -q
 ```
 
+## CI/CD
+
+The repository includes a basic GitHub Actions pipeline in `.github/workflows/ci-cd.yml`.
+
+- `test` runs on every push, pull request, and manual workflow run
+- it sets up Python 3.11, installs `requirements.txt`, and runs `pytest -q`
+- `package` runs only after tests pass on `main` pushes or manual runs
+- it creates `smartwatt-api-<commit-sha>.tar.gz` and uploads it as a workflow artifact
+
+This keeps delivery simple and provider-agnostic. When you choose a hosting target later, the `package` job can be replaced with a real deployment step.
+
 ## Suggested Next Step
 
 The next production-oriented improvement would be to add a dedicated worker entrypoint, for example `worker_main.py`, so the batch worker can run continuously as a separate process instead of only being driven from tests.
